@@ -1,2 +1,2 @@
-# Mint-Flash-USDT-Code-10000
+# Flash-USDT-Code-
 كود صك الفلاش يوأس ديتي , سيرفر باي بيت 0.6.6
