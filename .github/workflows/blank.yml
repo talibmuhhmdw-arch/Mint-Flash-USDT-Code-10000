@@ -2,24 +2,27 @@ name: TradingBotRunner
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # تشغيل آلي كل 5 دقائق
-  workflow_dispatch: # زر للتشغيل اليدوي
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4 # تحديث للإصدار الأحدث كما في صورتك
+        uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.10' # قمنا بترقية الإصدار ليتوافق مع المكتبات الحديثة
 
       - name: Install Dependencies
         run: |
-          pip install pandas pandas-ta requests yfinance
+          python -m pip install --upgrade pip
+          pip install pandas==2.0.3  # تحديد إصدار مستقر لـ pandas
+          pip install pandas-ta requests yfinance
+
       - name: Run Bot
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
